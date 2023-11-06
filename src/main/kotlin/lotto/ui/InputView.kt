@@ -7,7 +7,7 @@ class InputView {
     }
 
     fun getBonusNumber(): Int {
-        println("보너스 볼을 입력해주세요.")
+        println("보너스 볼을 입력해주세요. 없다면 0 을 입력")
         return readln().toInt()
     }
 
