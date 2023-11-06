@@ -3,11 +3,13 @@ package lotto.ui
 import lotto.domain.LotteryPrizeAmount
 
 class ResultView {
-    fun show(statistics: Map<Int, Int>) {
+    fun show(statistics: Map<LotteryPrizeAmount, Int>) {
         println("당첨 통계")
-        for (i in 3..6) {
-            val count = statistics.getOrDefault(i, 0)
-            println("$i 개 일치 (${LotteryPrizeAmount.getWinningPrize(i)}원)- $count 개")
-        }
+
+        LotteryPrizeAmount.values()
+            .forEach { prize ->
+                val prizeAmount = statistics.getOrDefault(prize, 0)
+                println("${prize.winNum} 개 일치 (${prize.prize}원)- $prizeAmount 개")
+            }
     }
 }

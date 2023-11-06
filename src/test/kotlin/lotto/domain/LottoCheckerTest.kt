@@ -28,7 +28,7 @@ class LottoCheckerTest {
 
         val lottos = Lottos(listOf(lotto, lotto1, lotto2))
 
-        val winNumStatistics = lottoChecker.getWinNumStatistics(lottos, listOf(1, 2, 3, 4, 44, 45))
-        winNumStatistics.get(4) shouldBe 1
+        val winNumStatistics = lottoChecker.getWinNumStatistics(lottos, listOf(1, 2, 3, 4, 5, 6))
+        winNumStatistics.get(LotteryPrizeAmount.FIRST) shouldBe 1
     }
 }

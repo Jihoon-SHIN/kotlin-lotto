@@ -6,13 +6,13 @@ class LottoChecker() {
         return lottoNums.intersect(winningNumbers).size
     }
 
-    fun getWinNumStatistics(lottos: Lottos, winningNumbers: List<Int>): Map<Int, Int> {
-        val statistics = mutableMapOf<Int, Int>()
+    fun getWinNumStatistics(lottos: Lottos, winningNumbers: List<Int>): Map<LotteryPrizeAmount, Int> {
+        val statistics = mutableMapOf<LotteryPrizeAmount, Int>()
         val lottoList = lottos.lottoList
         lottoList.forEach { lotto: Lotto ->
             val winNum = getWinNum(lotto, winningNumbers)
-
-            statistics[winNum] = statistics.getOrDefault(winNum, 0) + 1
+            val winningPrize = LotteryPrizeAmount.getWinningPrize(winNum)
+            statistics[winningPrize] = statistics.getOrDefault(winningPrize, 0) + 1
         }
         return statistics
     }
