@@ -6,7 +6,8 @@ class LottoChecker() {
     fun getLotteryPrize(lotto: Lotto, winningNumbers: List<Int>, bonusBalls: Int = NO_BONUS_BALL): LotteryPrizeAmount {
         val lottoNums = lotto.numbers
         val winCount = lottoNums.intersect(winningNumbers).size
-        return LotteryPrizeAmount.getWinningPrize(winCount)
+        val isContainBonus = lottoNums.contains(bonusBalls)
+        return LotteryPrizeAmount.getWinningPrize(winCount, isContainBonus)
     }
 
     fun getWinNumStatistics(lottos: Lottos, winningNumbers: List<Int>): LotteryWinningStatistics {
