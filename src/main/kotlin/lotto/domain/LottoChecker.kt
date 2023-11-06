@@ -3,19 +3,23 @@ package lotto.domain
 import lotto.domain.dto.LotteryWinningStatistics
 
 class LottoChecker() {
-    fun getWinNum(lotto: Lotto, winningNumbers: List<Int>): Int {
+    fun getLotteryPrize(lotto: Lotto, winningNumbers: List<Int>, bonusBalls: Int = NO_BONUS_BALL): LotteryPrizeAmount {
         val lottoNums = lotto.numbers
-        return lottoNums.intersect(winningNumbers).size
+        val winCount = lottoNums.intersect(winningNumbers).size
+        return LotteryPrizeAmount.getWinningPrize(winCount)
     }
 
     fun getWinNumStatistics(lottos: Lottos, winningNumbers: List<Int>): LotteryWinningStatistics {
         val statistics = mutableMapOf<LotteryPrizeAmount, Int>()
         val lottoList = lottos.lottoList
         lottoList.forEach { lotto: Lotto ->
-            val winNum = getWinNum(lotto, winningNumbers)
-            val winningPrize = LotteryPrizeAmount.getWinningPrize(winNum)
-            statistics[winningPrize] = statistics.getOrDefault(winningPrize, 0) + 1
+            val lotteryPrize = getLotteryPrize(lotto, winningNumbers)
+            statistics[lotteryPrize] = statistics.getOrDefault(lotteryPrize, 0) + 1
         }
         return LotteryWinningStatistics(statistics)
+    }
+
+    companion object {
+        private const val NO_BONUS_BALL = 0
     }
 }
