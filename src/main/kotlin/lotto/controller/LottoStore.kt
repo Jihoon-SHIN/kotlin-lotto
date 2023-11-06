@@ -23,6 +23,15 @@ class LottoStore {
         println("inputView = $winNumStatistics")
         resultView.show(winNumStatistics)
     }
+
+    fun lottoWithBonusBall() {
+        val money = inputView.getNumbers()
+        val lottos = lottoMachine.purchase(money)
+        userInterface.showNumbers(lottos)
+
+        val winningNumbers = inputView.getWinningNumbers()
+        val bonusNumber = inputView.getBonusNumber()
+    }
 }
 
 fun main() {

@@ -3,8 +3,12 @@ package lotto.ui
 class InputView {
     fun getNumbers(): Int {
         println("구입금액을 입력해 주세요.")
-        val money = readln().toInt()
-        return money
+        return readln().toInt()
+    }
+
+    fun getBonusNumber(): Int {
+        println("보너스 볼을 입력해주세요.")
+        return readln().toInt()
     }
 
     fun getWinningNumbers(): List<Int> {
