@@ -1,11 +1,12 @@
 package lotto.ui
 
 import lotto.domain.LotteryPrizeAmount
+import lotto.domain.dto.LotteryWinningStatistics
 
 class ResultView {
-    fun show(statistics: Map<LotteryPrizeAmount, Int>) {
+    fun show(lotteryWinningStatistics: LotteryWinningStatistics) {
         println("당첨 통계")
-
+        val statistics = lotteryWinningStatistics.statistics
         LotteryPrizeAmount.values()
             .forEach { prize ->
                 val prizeAmount = statistics.getOrDefault(prize, 0)
