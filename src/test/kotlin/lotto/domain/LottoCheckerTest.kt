@@ -1,6 +1,7 @@
 package lotto.domain
 
 import io.kotest.matchers.shouldBe
+import lotto.domain.LotteryPrizeAmount.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
@@ -15,8 +16,8 @@ class LottoCheckerTest {
     @Test
     fun `당첨 번호가 주어졌을 때, 로또가 등 수를  알 수 있다`() {
         val lotto = Lotto(listOf(1, 2, 3, 4, 5, 6))
-        val winNum = lottoChecker.getLotteryPrize(lotto, listOf(1, 2, 3, 9, 10, 11))
-        winNum shouldBe LotteryPrizeAmount.FIFTH
+        val prize = lottoChecker.getLotteryPrize(lotto, listOf(1, 2, 3, 9, 10, 11))
+        prize shouldBe FIFTH
     }
 
     @Test
@@ -29,6 +30,13 @@ class LottoCheckerTest {
 
         val winNumStatistics = lottoChecker.getWinNumStatistics(lottos, listOf(1, 2, 3, 4, 5, 6))
         val statistics = winNumStatistics.statistics
-        statistics.get(LotteryPrizeAmount.FIRST) shouldBe 1
+        statistics.get(FIRST) shouldBe 1
+    }
+
+    @Test
+    fun `당첨 번호와 보너스 볼이 주어졌을 때, 2등을 찾을 수 있다`() {
+        val lotto = Lotto(listOf(1, 2, 3, 4, 5, 6))
+        val prize = lottoChecker.getLotteryPrize(lotto, listOf(1, 2, 3, 4, 5, 7), 6)
+        prize shouldBe SECOND
     }
 }
