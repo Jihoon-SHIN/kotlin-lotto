@@ -10,7 +10,7 @@ class ResultView {
         LotteryPrizeAmount.values()
             .forEach { prize ->
                 val prizeAmount = statistics.getOrDefault(prize, 0)
-                println("${prize.winNum} 개 일치 (${prize.prize}원)- $prizeAmount 개")
+                println("${prize.winNum} 개 일치 ${if (prize == LotteryPrizeAmount.SECOND) "보너스 볼 일치" else ""} (${prize.prize}원)- $prizeAmount 개")
             }
     }
 }
