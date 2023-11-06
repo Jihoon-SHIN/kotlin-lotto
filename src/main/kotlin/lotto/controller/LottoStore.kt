@@ -22,7 +22,7 @@ class LottoStore {
 
         val winNumStatistics = lottoChecker.getWinNumStatistics(lottos, winningNumbers, bonusNumber)
         println("inputView = $winNumStatistics")
-        resultView.show(winNumStatistics)
+        resultView.show(winNumStatistics, money)
     }
 }
 
