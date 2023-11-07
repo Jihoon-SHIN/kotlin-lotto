@@ -12,7 +12,7 @@ class LottoMachineTest {
 
     @BeforeEach
     fun setUp() {
-        lottoMachine1000 = LottoMachine(1000)
+        lottoMachine1000 = LottoMachine()
     }
 
     @Test
